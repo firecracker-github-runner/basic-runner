@@ -37,7 +37,21 @@ RUN apt update && apt install -y \
   jq \
   unzip \
   wget \
+  xz-utils \
   && apt clean \
   && rm -rf /var/lib/apt/lists/*
+
+# Add runner to sudoers
+RUN echo "runner ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/runner
+COPY --chown=runner:0 ./install /tmp/install/
+
+# Install nix
+USER runner
+RUN /tmp/install/nix.sh
+ENV PATH /nix/var/nix/profiles/default/bin:/home/runner/.nix-profile/bin:$PATH
+USER root
+
+# cleanup
+RUN rm /etc/sudoers.d/runner && rm -rf /tmp/*
 
 USER runner
