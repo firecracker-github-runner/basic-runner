@@ -22,6 +22,7 @@ RUN cd ${WORKDIR} && \
 FROM ghcr.io/actions/actions-runner:latest@sha256:45f609ab5bd691735dbb25e3636db2f5142fcd8f17de635424f2e7cbd3e16bc9
 
 ENV BIN_DIR=/usr/bin
+ENV USER=runner
 
 USER root
 
