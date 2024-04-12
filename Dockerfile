@@ -1,7 +1,7 @@
 # Use docker images as sources for binaries as possible, to keep versioning simpler
 FROM chainguard/apko:latest@sha256:931b89968e4182649c4de2ac5bae07184b0327462641db997c0df22f87077740 as apko
 FROM oven/bun:distroless@sha256:3cc457ea32e90b9c87b1d134e89c072a986ee3adaed7063d35fef2fce90cc4a7 as bun
-FROM denoland/deno:bin@sha256:b494c3d4272918010f16e6cb66a5e524967695e92e498b0b4c439adba994d64d AS deno
+FROM denoland/deno:bin@sha256:18d72c43e4b91c81e824e368e8eb15c67b481e669c5151dc3902cf113c87c4b7 AS deno
 
 FROM registry.access.redhat.com/ubi9/ubi@sha256:66233eebd72bb5baa25190d4f55e1dc3fff3a9b77186c1f91a0abdb274452072 as builder
 # Grab anything we can't get via other means
