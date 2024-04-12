@@ -31,11 +31,12 @@ USER root
 
 RUN \
   # Move /nix/store (as it will be mounted as a volume)
-  mv /nix/store /nix/store_base \
-  chown -R runner:0 /nix/store_base \
-  chown -R runner:0 /home/runner \
+  mv /nix/store /nix/store_base && \
+  chown -R runner:0 /nix/store_base && \
+  chown -R runner:0 /home/runner && \
   # Cleanup
-  rm /etc/sudoers.d/runner && rm -rf /tmp/*
+  rm /etc/sudoers.d/runner && \
+  rm -rf /tmp/*
 
 # Inject sudo shim
 COPY --chown=root:root ./sudoShim.sh /usr/bin/sudo
