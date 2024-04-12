@@ -50,6 +50,9 @@ COPY --chown=runner:0 ./install /tmp/install/
 USER runner
 RUN /tmp/install/nix.sh
 ENV PATH /nix/var/nix/profiles/default/bin:/home/runner/.nix-profile/bin:$PATH
+
+# Install devenv
+RUN /tmp/install/devenv.sh
 USER root
 
 # cleanup
