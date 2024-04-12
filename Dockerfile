@@ -35,6 +35,9 @@ ENV PATH /nix/var/nix/profiles/default/bin:/home/runner/.nix-profile/bin:$PATH
 #   && rm -rf /home/runner/_work
 USER root
 
+# Move /nix/store (as it will be mounted as a volume)
+RUN mv /nix/store /nix/store_base
+
 # cleanup
 RUN rm /etc/sudoers.d/runner && rm -rf /tmp/*
 
