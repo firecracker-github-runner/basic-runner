@@ -14,6 +14,7 @@ RUN apt update && apt install -y \
   jq \
   unzip \
   wget \
+  zstd \
   xz-utils \
   && apt clean \
   && rm -rf /var/lib/apt/lists/*
