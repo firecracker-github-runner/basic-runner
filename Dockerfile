@@ -25,18 +25,20 @@ RUN /tmp/install/nix.sh
 ENV PATH /nix/var/nix/profiles/default/bin:/home/runner/.nix-profile/bin:$PATH
 
 # Install devenv
-RUN /tmp/install/devenv.sh
+# RUN /tmp/install/devenv.sh
 
 # Prime image with a fake _work
-COPY --chown=runner:runner ./_work /home/runner/_work
-RUN cd /home/runner/_work && \
-  devenv shell hello \
-  cd - \
-  && rm -rf /home/runner/_work
-
+# COPY --chown=runner:runner ./_work /home/runner/_work
+# RUN cd /home/runner/_work && \
+#   devenv shell hello \
+#   cd - \
+#   && rm -rf /home/runner/_work
 USER root
 
 # cleanup
 RUN rm /etc/sudoers.d/runner && rm -rf /tmp/*
+
+# Inject sudo shim
+COPY --chown=root:root ./install/sudoShim.sh /usr/bin/sudo
 
 USER runner
