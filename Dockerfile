@@ -5,6 +5,9 @@ ENV USER=runner
 
 USER root
 
+# Ensure runner is in group 0
+RUN usermod -g 0 runner
+
 RUN apt update && apt install -y \
   git \
   curl \
