@@ -6,7 +6,7 @@ ENV USER=runner
 USER root
 
 # Ensure runner is in group 0
-RUN usermod -g 0 runner
+RUN usermod -aG 0 runner
 
 RUN apt update && apt install -y \
   git \
@@ -28,11 +28,13 @@ RUN /tmp/install/nix.sh
 ENV PATH /nix/var/nix/profiles/default/bin:/home/runner/.nix-profile/bin:$PATH
 USER root
 
-# Move /nix/store (as it will be mounted as a volume)
-RUN mv /nix/store /nix/store_base
 
-# cleanup
-RUN rm /etc/sudoers.d/runner && rm -rf /tmp/*
+RUN \
+  # Move /nix/store (as it will be mounted as a volume)
+  mv /nix/store /nix/store_base \
+  chown -R runner:0 /nix/store_base \
+  # Cleanup
+  rm /etc/sudoers.d/runner && rm -rf /tmp/*
 
 # Inject sudo shim
 COPY --chown=root:root ./sudoShim.sh /usr/bin/sudo
