@@ -31,6 +31,7 @@ USER root
 
 RUN \
   # Move /nix/store (as it will be mounted as a volume)
+  mkdir -p /nix_base && \
   mv /nix/store /nix_base/store && \
   chown -R runner:0 /nix_base && \
   chown -R runner:0 /home/runner && \
