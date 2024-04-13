@@ -29,11 +29,10 @@ RUN /tmp/install/nix.sh
 ENV PATH /nix/var/nix/profiles/default/bin:/home/runner/.nix-profile/bin:$PATH
 USER root
 
-
 RUN \
   # Move /nix/store (as it will be mounted as a volume)
-  mv /nix/store /nix/store_base && \
-  chown -R runner:0 /nix/store_base && \
+  mv /nix/store /nix_base/store && \
+  chown -R runner:0 /nix_base && \
   chown -R runner:0 /home/runner && \
   # Cleanup
   rm /etc/sudoers.d/runner && \
