@@ -1,4 +1,4 @@
-FROM ghcr.io/actions/actions-runner:latest@sha256:6db7a9e04f4b568b843c5ab40952319294807a2165a9a268fe36c71630415265
+FROM ghcr.io/actions/actions-runner:latest@sha256:95db6fbb020b9f734e8a00389291dae766f0e6ad3d1171ae2d68e9ad8ac4a985
 
 ENV BIN_DIR=/usr/bin
 ENV USER=runner
